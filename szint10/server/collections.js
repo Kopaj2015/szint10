@@ -14,10 +14,6 @@ Meteor.publish('fogadas',function(){
     return Fogadas.find({});
 });
 
-Meteor.publish('userIds', function () {
-    return Meteor.users.find({}, {fields: {_id: 1, username: 1, profile: 1}});
-});
-
 Meteor.methods({
     // esemeny
 
@@ -52,7 +48,7 @@ Meteor.methods({
 
     adduser: function(nev,pontszam) {
         if(Meteor.user && Meteor.user().username == "admin"){
-            users.insert({
+            Meteor.users.insert({
                 username:  nev,
                 pontszam: pontszam
             });
@@ -60,7 +56,7 @@ Meteor.methods({
     },
     edituser: function(id,nev,pontszam) {
         if(Meteor.user && Meteor.user().username == "admin"){
-            users.update({ _id: id },
+            Meteor.users.update({ _id: id },
                 { $set: {
                     username: nev,
                     pontszam: pontszam
@@ -70,7 +66,7 @@ Meteor.methods({
     },
     removeuser: function(id) {
         if(Meteor.user && Meteor.user().username == "admin"){
-            users.remove({
+            Meteor.users.remove({
                 _id:  id
             });
         }

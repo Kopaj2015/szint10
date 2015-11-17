@@ -2,38 +2,53 @@ Router.configure({
   layoutTemplate: 'layout'
 });
 
-Router.onBeforeAction(function () {
-  if (!Meteor.userId()) {
-    this.redirect('loginPage');
-  } else {
-    this.next();
-  }
-});
-
 Router.route('/', {
-  name:     'posts',
-  template: 'posts',
+  name:     'home',
+  template: 'home',
   subscriptions: function() {
     return [
-      Meteor.subscribe('posts'),
-      Meteor.subscribe('userIds'),
-      Meteor.subscribe('onlineUsers')
+      Meteor.subscribe('esemeny'),
+      Meteor.subscribe('verseny'),
     ];
   }
 });
 
-Router.route('/messages', {
-  name:     'messages',
-  template: 'messages',
+Router.route('/adminEsemeny', {
+  name:     'adminEsemeny',
+  template: 'adminEsemeny',
   subscriptions: function() {
     return [
-      Meteor.subscribe('chatMessages'),
-      Meteor.subscribe('onlineUsers')
+      Meteor.subscribe('esemeny')
     ];
   }
 });
 
-Router.route('/userprofile', {
-  name:     'userProfile',
-  template: 'userProfile'
+Router.route('/adminVerseny', {
+  name:     'adminVerseny',
+  template: 'adminVerseny',
+  subscriptions: function() {
+    return [
+      Meteor.subscribe('verseny')
+    ];
+  }
+});
+
+Router.route('/adminFogadas', {
+  name:     'adminFogadas',
+  template: 'adminFogadas',
+  subscriptions: function() {
+    return [
+      Meteor.subscribe('fogadas')
+    ];
+  }
+});
+
+Router.route('/adminUser', {
+  name:     'adminUser',
+  template: 'adminUser',
+  subscriptions: function() {
+    return [
+      Meteor.subscribe('users')
+    ];
+  }
 });
