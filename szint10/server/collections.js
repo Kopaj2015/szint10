@@ -1,13 +1,17 @@
-Meteor.publish('posts',function(){
-    return Posts.find({}, { sort: {createdAt: -1}});
+Meteor.publish('esemeny',function(){
+    return Esemeny.find({});
 });
 
-Meteor.publish('chatMessages',function(){
-    return Messages.find({});
+Meteor.publish('verseny',function(){
+    return Verseny.find({});
 });
 
-Meteor.publish('onlineUsers',function(){
-    return Meteor.users.find({'status.online':true},{username:1});
+Meteor.publish('users',function(){
+    return Meteor.users.find({});
+});
+
+Meteor.publish('fogadas',function(){
+    return Fogadas.find({});
 });
 
 Meteor.publish('userIds', function () {
@@ -15,39 +19,124 @@ Meteor.publish('userIds', function () {
 });
 
 Meteor.methods({
-    addPost: function(post) {
-        if(Meteor.user()) {
-            Posts.insert({
-                userId:  Meteor.user()._id,
-                post: post,
-                createdAt: new Date()
+    // esemeny
+
+    addEsemeny: function(nev,idopont,kategoria) {
+        if(Meteor.user && Meteor.user().username == "admin"){
+            Esemeny.insert({
+                nev:  nev,
+                idopont: idopont,
+                kategoria: kategoria
             });
         }
     },
-   editPost: function(id,val) {
-        if(Meteor.user()) {
-            Posts.update({ _id: id }, { $set: { post: val } });
-        }
-    },
-    removePost: function(id) {
-        if(Meteor.user()) {
-            Posts.remove({
-                _id:  id,
+    editEsemeny: function(id,val) {
+       if(Meteor.user && Meteor.user().username == "admin"){
+            Posts.update({ _id: id },
+                { $set: {
+                    nev:  nev,
+                    idopont: idopont,
+                    kategoria: kategoria
+                }
             });
         }
     },
-    updateMsg: function(msg,session_id){
-        if(Meteor.user()){
-            Messages.update({"_id":session_id},{$push:{messages:{
-                name: Meteor.user().username,
-                text: msg,
-                createdAt: new Date()
-            }}})
+    removeEsemeny: function(id) {
+        if(Meteor.user && Meteor.user().username == "admin"){
+            Esemeny.remove({
+                _id:  id
+            });
         }
     },
-    newMsg: function(id){
-        if(Meteor.user()){
-            Messages.insert({chatIds:[id , Meteor.userId()],messages:[]});
+    // user
+
+    adduser: function(nev,pontszam) {
+        if(Meteor.user && Meteor.user().username == "admin"){
+            users.insert({
+                username:  nev,
+                pontszam: pontszam
+            });
+        }
+    },
+    edituser: function(id,nev,pontszam) {
+        if(Meteor.user && Meteor.user().username == "admin"){
+            users.update({ _id: id },
+                { $set: {
+                    username: nev,
+                    pontszam: pontszam
+                }
+                });
+        }
+    },
+    removeuser: function(id) {
+        if(Meteor.user && Meteor.user().username == "admin"){
+            users.remove({
+                _id:  id
+            });
+        }
+    },
+
+    // verseny
+
+    addVerseny: function(esemenyId,userId1,userId2,eredmeny,kategoria) {
+        if(Meteor.user && Meteor.user().username == "admin"){
+            Verseny.insert({
+                esemeny_id:  esemenyId,
+                user_id1: userId1,
+                user_id2: userId2,
+                eredmeny: eredmeny,
+                kategoria: kategoria
+            });
+        }
+    },
+    editVerseny: function(id,esemenyId,userId1,userId2,eredmeny,kategoria) {
+        if(Meteor.user && Meteor.user().username == "admin"){
+            Verseny.update({ _id: id },
+                { $set: {
+                    esemeny_id:  esemenyId,
+                    user_id1: userId1,
+                    user_id2: userId2,
+                    eredmeny: eredmeny,
+                    kategoria: kategoria
+                }
+                });
+        }
+    },
+    removeVerseny: function(id) {
+        if(Meteor.user && Meteor.user().username == "admin"){
+            Verseny.remove({
+                _id:  id
+            });
+        }
+    },
+
+    // fogadas
+
+    addFogadas: function(userId,versenyId,fogadas) {
+        if(Meteor.user && Meteor.user().username == "admin"){
+            Fogadas.insert({
+                user_id: userId,
+                verseny_id: versenyId,
+                fogadas: fogadas
+            });
+        }
+    },
+    editFogadas: function(id,userId,versenyId,fogadas) {
+        if(Meteor.user && Meteor.user().username == "admin"){
+            Verseny.update({ _id: id },
+                { $set: {
+                    user_id: userId,
+                    verseny_id: versenyId,
+                    fogadas: fogadas
+                }
+                });
+        }
+    },
+    removeFogadas: function(id) {
+        if(Meteor.user && Meteor.user().username == "admin"){
+            Verseny.remove({
+                _id:  id
+            });
         }
     }
 });
