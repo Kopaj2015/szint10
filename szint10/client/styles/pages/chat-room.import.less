@@ -1,0 +1,42 @@
+.chat-room.page {
+  .submit-block {
+    position: static;
+    width: 50%;
+    form {
+      margin-top: 20px;
+      button {
+        width: 25%;
+      }
+    }
+  }
+  li {
+    width: 70%;
+    text-align: left;
+    .username, .message {
+      display: block;
+    }
+    .username {
+      margin: 20px 0 0;
+      padding: 5px;
+      background-color: lighten(grey, 40%);
+    }
+    .message {
+      padding: 5px;
+      background-color: lighten(grey, 45%);
+    }
+    &.own {
+      .username {
+        background-color: lighten(blue, 40%);
+      }
+      .message {
+        background-color: lighten(blue, 45%);
+      }
+    }
+    &.low-dim {
+      opacity: 0.7;
+    }
+    &.high-dim {
+      opacity: 0.3;
+    }
+  }
+}
