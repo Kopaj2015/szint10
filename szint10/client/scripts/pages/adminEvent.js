@@ -1,16 +1,16 @@
 Template.adminEsemeny.events({
-    'submit form': function(event) {
+    'submit .new-event': function (event) {
         event.preventDefault();
-        if(event.target.nev.value !== '' && event.target.idopont.value !== '' && event.target.kategoria.value !== '') {
-            Meteor.call('addEsemeny',
-                event.target.nev.value,
-                event.target.idopont.value,
-                event.target.kategoria.value
-            );
-            event.target.nev.value = '';
-            event.target.idopont.value = '';
-            event.target.kategoria.value = '';
-        }
+
+        var nev = event.target.nev.value;
+        var idopont = event.target.idopont.value;
+        var kategoria = event.target.kategoria.value;
+
+        Meteor.call('addEsemeny',nev,idopont,kategoria);
+
+        event.target.nev.value = '';
+        event.target.idopont.value = '';
+        event.target.kategoria.value = '';
     },
     'click .remove':function(event){
         event.preventDefault();
@@ -25,27 +25,14 @@ Template.adminEsemeny.events({
 });
 
 
-Template.posts.helpers({
-    getPosts: function() {
-        return Posts.find({}, { sort: {createdAt: -1}});
+Template.adminEsemeny.helpers({
+    getEsemeny: function() {
+        return Esemeny.find({});
     },
-    updatePost: function() {
+    updateEsemeny: function() {
         var id = this._id;
         return function (res, val) {
-            Meteor.call('editPost',id,val);
+            Meteor.call('editEsemeny',id,val);
         }
-    },
-    getDisplayName: function(userId) {
-        var user = Meteor.users.findOne({_id: userId});
-        if(user) {
-            return user.profile.displayName ? user.profile.displayName : user.username;
-        }
-        return 'A ghost...';
-    },
-    ownPost: function(postUserId) {
-        if(Meteor.user() && Meteor.user()._id == postUserId) {
-            return true;
-        }
-        return false;
     }
 });

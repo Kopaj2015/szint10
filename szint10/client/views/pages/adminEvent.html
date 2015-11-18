@@ -1,15 +1,44 @@
 <template name="adminEsemeny">
     <div class="chat-room page container">
-        <div align="center" class="row">
-            <ul class="list-unstyled">
-                {{#each getPosts}}
-                    <li>
-                        {{> xEditable type="text" success=updatePost placement="right" mode="inline" value=nev }}
-                        {{> xEditable type="text" success=updatePost placement="right" mode="inline" value=idopont }}
-                        {{> xEditable type="text" success=updatePost placement="right" mode="inline" value=kategoria }}
-                    </li>
-                {{/each}}
-            </ul>
+
+        <div>
+            <form class="new-event">
+                <input type="nev" name="nev" placeholder="" />
+                <input type="idopont" name="idopont" placeholder="" />
+                <input type="kategoria" name="kategoria" placeholder="" />
+                <input type="submit" value="hozzáadás">
+            </form>
+        </div>
+
+        <div align="left" class="row">
+
+                <table border="1" width="600">
+
+                    <tr>
+                        <th width="200">
+                            Name
+                        </th>
+                        <th width="200">
+                            Date
+                        </th>
+                        <th width="200">
+                            Category
+                        </th>
+                    </tr>
+                    {{#each getEsemeny}}
+                            <tr>
+                                <td width="200">
+                                    {{> xEditable type="text" success=updatePost placement="right" mode="inline" value=nev }}
+                                </td>
+                                <td width="200">
+                                    {{> xEditable type="text" success=updatePost placement="right" mode="inline" value=idopont }}
+                                </td>
+                                <td width="200">
+                                    {{> xEditable type="text" success=updatePost placement="right" mode="inline" value=kategoria }}
+                                </td>
+                            </tr>
+                    {{/each}}
+                </table>
         </div>
     </div>
 </template>

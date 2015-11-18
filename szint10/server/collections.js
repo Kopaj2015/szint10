@@ -26,7 +26,7 @@ Meteor.methods({
             });
         }
     },
-    editEsemeny: function(id,val) {
+    editEsemeny: function(id,nev,idopont,kategoria) {
        if(Meteor.user && Meteor.user().username == "admin"){
             Posts.update({ _id: id },
                 { $set: {
