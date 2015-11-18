@@ -1,0 +1,15 @@
+<template name="adminEsemeny">
+    <div class="chat-room page container">
+        <div align="center" class="row">
+            <ul class="list-unstyled">
+                {{#each getPosts}}
+                    <li>
+                        {{> xEditable type="text" success=updatePost placement="right" mode="inline" value=nev }}
+                        {{> xEditable type="text" success=updatePost placement="right" mode="inline" value=idopont }}
+                        {{> xEditable type="text" success=updatePost placement="right" mode="inline" value=kategoria }}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</template>
