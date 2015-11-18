@@ -43,9 +43,9 @@ Router.route('/adminFogadas', {
   }
 });
 
-Router.route('/adminUser', {
-  name:     'adminUser',
-  template: 'adminUser',
+Router.route('/adminUsers', {
+  name:     'adminUsers',
+  template: 'adminUsers',
   subscriptions: function() {
     return [
       Meteor.subscribe('users')

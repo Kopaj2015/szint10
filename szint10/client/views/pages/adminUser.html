@@ -1,11 +1,10 @@
-<template name="adminEsemeny">
+<template name="adminUsers">
     <div class="chat-room page container">
 
         <div>
-            <form class="new-event">
+            <form class="new-user">
                 <input type="nev" name="nev" placeholder="" />
-                <input type="idopont" name="idopont" placeholder="" />
-                <input type="kategoria" name="kategoria" placeholder="" />
+                <input type="pontszam" name="pontszam" placeholder="" />
                 <input type="submit" value="hozzáadás">
             </form>
         </div>
@@ -19,26 +18,20 @@
                                 Name
                             </th>
                             <th >
-                                Date
-                            </th>
-                            <th >
-                                Category
+                                Score
                             </th>
                             <th>
                                 Operation
                             </th>
                         </tr>
                     </thead>
-                    {{#each getEsemeny}}
+                    {{#each getUser}}
                             <tr>
                                 <td >
                                     {{> xEditable type="text" success=updateEsemeny placement="right" mode="inline" value=nev }}
                                 </td>
                                 <td >
-                                    {{> xEditable type="text" success=updateEsemeny placement="right" mode="inline" value=idopont }}
-                                </td>
-                                <td >
-                                    {{> xEditable type="text" success=updateEsemeny placement="right" mode="inline" value=kategoria }}
+                                    {{> xEditable type="text" success=updateEsemeny placement="right" mode="inline" value=pontszam }}
                                 </td>
                                 <td>
                                     <button class="delete">Remove</button>
