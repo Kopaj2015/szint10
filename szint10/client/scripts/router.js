@@ -62,3 +62,23 @@ Router.route('/kmkEvents', {
     ];
   }
 });
+
+Router.route('/bet', {
+  name:     'bet',
+  template: 'bet',
+  subscriptions: function() {
+    return [
+      Meteor.subscribe('fogadas')
+    ];
+  }
+});
+
+Router.route('/leaderboard', {
+  name:     'leaderboard',
+  template: 'leaderboard',
+  subscriptions: function() {
+    return [
+      Meteor.subscribe('leaderboard')
+    ];
+  }
+});

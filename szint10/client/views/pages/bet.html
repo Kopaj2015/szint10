@@ -1,7 +1,59 @@
 <template name="bet">
-        <div id="wrapper">
-            <div id="page-content-wrapper">
-                <div>Bet</div>
+    <div id="wrapper">
+        <div id="page-content-wrapper">
+            <div class="row">
+                <h2>Events</h2>
+            </div>
+            <div class="row">
+                <table border="1" width="300">
+                        <tr>
+                            <th>
+                                Esemény
+                            </th>
+                            <th>
+                                Szint 1
+                            </th>
+                            <th>
+                                Szint 2
+                            </th>
+                            <th>
+                                Eredmeny
+                            </th>
+                            <th>
+                                Kategoria
+                            </th>
+                            <th>
+                                Fogadas
+                            </th>
+                        </tr>
+                        {{#each allVerseny}}
+                            <tr>
+                                <td>
+                                    {{esemeny_id}}
+                                </td>
+                                <td>
+                                    {{user_id1}}
+                                </td>
+                                <td>
+                                    {{user_id2}}
+                                </td>
+                                <td>
+                                    {{eredmeny}}
+                                </td>
+                                <td>
+                                    {{kategoria}}
+                                </td>
+                                <td>
+                                    <select onchange="newBet(esemeny_id)">
+                                        <option value="1">1</option>
+                                        <option value="X">X</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </table>
             </div>
         </div>
+    </div>
 </template>
