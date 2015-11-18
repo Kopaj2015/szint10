@@ -2,53 +2,44 @@
     <div id="wrapper">
         <div id="page-content-wrapper">
             <div class="row">
-                <h2>Events</h2>
+                <h2>Bets</h2>
+            </div>
+
+            <div class="row">
+                <form class="new-bet">
+                    <input type="hidden" name="user_id" value="{{currentUser._id}}"/>
+                    <input type="text" name="esemeny_id" placeholder="Esemeny_id" />
+                    <input type="text" name="fogadas" placeholder="Tipp" />
+                    <input type="submit" value="hozzáadás">
+                </form>
             </div>
             <div class="row">
+
+            </div>
+            <div class="row">
+                Fogadások
                 <table border="1" width="300">
                         <tr>
                             <th>
-                                Esemény
+                                user_id
                             </th>
                             <th>
-                                Szint 1
+                                verseny_id
                             </th>
                             <th>
-                                Szint 2
-                            </th>
-                            <th>
-                                Eredmeny
-                            </th>
-                            <th>
-                                Kategoria
-                            </th>
-                            <th>
-                                Fogadas
+                                fogadas
                             </th>
                         </tr>
-                        {{#each allVerseny}}
+                        {{#each allFogadas}}
                             <tr>
                                 <td>
-                                    {{esemeny_id}}
+                                    {{user_id}}
                                 </td>
                                 <td>
-                                    {{user_id1}}
+                                    {{verseny_id}}
                                 </td>
                                 <td>
-                                    {{user_id2}}
-                                </td>
-                                <td>
-                                    {{eredmeny}}
-                                </td>
-                                <td>
-                                    {{kategoria}}
-                                </td>
-                                <td>
-                                    <select onchange="newBet(esemeny_id)">
-                                        <option value="1">1</option>
-                                        <option value="X">X</option>
-                                        <option value="2">2</option>
-                                    </select>
+                                    {{fogadas}}
                                 </td>
                             </tr>
                         {{/each}}
