@@ -52,3 +52,13 @@ Router.route('/adminUser', {
     ];
   }
 });
+
+Router.route('/kmkEvents', {
+  name:     'kmkEvents',
+  template: 'kmkEvents',
+  subscriptions: function() {
+    return [
+      Meteor.subscribe('esemeny')
+    ];
+  }
+});

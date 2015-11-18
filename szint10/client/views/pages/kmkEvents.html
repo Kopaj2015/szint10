@@ -5,7 +5,32 @@
                 <h2>Events</h2>
             </div>
             <div class="row">
-
+                <table border="1" width="300">
+                    <th>
+                        <td width="100">
+                           Name
+                        </td>
+                        <td width="100">
+                            Date
+                        </td>
+                        <td width="100">
+                            Category
+                        </td>
+                    </th>
+                {{#each kmkEvents}}
+                    <tr>
+                        <td>
+                            {{name}}
+                        </td>
+                        <td>
+                            {{idopont}}
+                        </td>
+                        <td>
+                            {{kategoria}}
+                        </td>
+                    </tr>
+                {{/each}}
+                </table>
             </div>
         </div>
     </div>
